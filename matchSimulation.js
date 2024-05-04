@@ -17,3 +17,5 @@ function simulateMatch(playerA, playerB) {
 
   return attackingPlayer.health === 0 ? defendingPlayer : attackingPlayer;
 }
+
+module.exports = { simulateMatch };
