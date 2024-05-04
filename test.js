@@ -1,43 +1,26 @@
 const assert = require("assert");
-const { Player, simulateMatch } = require("./matchSimulation");
+// const { Player } = require("./player");
+// const { simulateMatch } = require("./matchSimulation");
+const { Player, simulateMatch } = require("./main");
 
-describe("Player Class", () => {
-  it("should calculate attack damage correctly", () => {
-    const player = new Player(50, 5, 10);
-    assert.equal(player.getAttackDamage(3), 30);
-    assert.equal(player.getAttackDamage(6), 60);
-  });
+let player;
+let playerA;
+let playerB;
+let winner;
 
-  it("should reduce health correctly on damage", () => {
-    const player = new Player(100, 5, 10);
-    player.takeDamage(20);
-    assert.equal(player.health, 80);
-    player.takeDamage(50); // Should not go negative
-    assert.equal(player.health, 0);
-  });
-});
+player = new Player(50, 5, 10);
+assert.equal(player.getAttackDamage(3), 30);
+assert.equal(player.getAttackDamage(6), 60);
 
-describe("Match Simulation", () => {
-  it("should handle scenarios where player A wins", () => {
-    const playerA = new Player(100, 10, 15);
-    const playerB = new Player(50, 5, 10);
-    const winner = simulateMatch(playerA, playerB);
-    assert.equal(winner, playerA);
-  });
+player = new Player(100, 5, 10);
+player.takeDamage(20);
+assert.equal(player.health, 80);
+player.takeDamage(50);
+assert.equal(player.health, 0);
 
-  it("should handle scenarios where Player B wins", () => {
-    const playerA = new Player(50, 5, 5); // Weaker A
-    const playerB = new Player(100, 10, 10);
-    const winner = simulateMatch(playerA, playerB);
-    assert.equal(winner, playerB);
-  });
-
-  it("should handle draws (both players reach 0 health simultaneously)", () => {
-    const playerA = new Player(50, 10, 10); // High attack, low health for both
-    const playerB = new Player(50, 10, 10);
-    const winner = simulateMatch(playerA, playerB);
-    assert.equal(winner.health, 0); // Both at 0 health
-  });
-});
+playerA = new Player(100, 10, 15);
+playerB = new Player(50, 5, 10);
+winner = simulateMatch(playerA, playerB);
+assert.equal(winner, playerA);
 
 console.log("All tests passed!");

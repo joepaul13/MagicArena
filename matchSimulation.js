@@ -1,3 +1,5 @@
+const { Player } = require("./player");
+
 function simulateMatch(playerA, playerB) {
   let attackingPlayer = playerA.health < playerB.health ? playerA : playerB;
   let defendingPlayer = attackingPlayer === playerA ? playerB : playerA;
