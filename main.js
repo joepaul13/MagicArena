@@ -36,7 +36,7 @@ player = new Player(100, 5, 10);
 player.takeDamage(20);
 assert.equal(player.health, 80);
 player.takeDamage(50);
-assert.equal(player.health, 0);
+assert.equal(player.health, 30);
 
 playerA = new Player(100, 10, 15);
 playerB = new Player(50, 5, 10);
