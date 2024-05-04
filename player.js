@@ -1,18 +1,20 @@
+const { calculateAttackDamage } = require("./utils");
+
 class Player {
-  constructor(health, strength, attack) {
+  constructor(health, attack, defense) {
     this.health = health;
-    this.strength = strength;
     this.attack = attack;
+    this.defense = defense;
   }
 
   getAttackDamage(diceRoll) {
-    return this.attack * diceRoll;
+    return calculateAttackDamage(this.attack, diceRoll); // Use utils function
   }
 
   takeDamage(damage) {
     this.health -= damage;
     if (this.health < 0) {
-      this.health = 0;
+      this.health = 0; // Ensure health doesn't go negative
     }
   }
 }
